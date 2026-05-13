@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>楞先生 — 戶外・旅行・機能生活選品</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+
+    /* ─── TOKENS ────────────────────────────────────────────────── */
+    :root {
+      --tan:        #C9B69B;
+      --tan-light:  #DDD0BA;
+      --cream:      #EDE3D4;
+      --off-white:  #F5F0E8;
+      --brown:      #1E0E08;
+      --brown-mid:  #3A1810;
+      --brown-soft: #3D2416;
+      --green:      #1C3320;
+      --gap:        2px;
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 150%; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      font-size: 26px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(201, 182, 155, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(30, 14, 8, 0.1);
+      padding: 0 48px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(196, 176, 148, 0.99);
+      box-shadow: 0 1px 20px rgba(30, 14, 8, 0.1);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 30px; width: auto; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      opacity: 0.65;
+      transition: opacity 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.active { opacity: 1; }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--brown);
+      opacity: 0.5;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--brown);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100dvh;
+      background: var(--tan);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 48px 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-logo-wrap {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 32px;
+    }
+    .hero-logo-wrap img {
+      max-width: 960px;
+      width: 80vw;
+      height: auto;
+    }
+    .hero-sub {
+      position: relative;
+      z-index: 2;
+      font-size: 0.82rem;
+      letter-spacing: 0.28em;
+      color: var(--brown);
+      opacity: 0.6;
+      margin-bottom: 44px;
+      text-transform: uppercase;
+    }
+    .hero-tagline {
+      position: relative;
+      z-index: 2;
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.45rem, 3.2vw, 1.9rem);
+      font-weight: 600;
+      color: var(--brown);
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 22px;
+    }
+    .hero-desc {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+      color: var(--brown);
+      opacity: 0.75;
+      line-height: 2;
+      max-width: 420px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+    .hero-tags {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 480px;
+    }
+    .hero-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--brown);
+      opacity: 0.65;
+      border: 1px solid rgba(30, 14, 8, 0.28);
+      padding: 6px 15px;
+      border-radius: 100px;
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 240px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--brown);
+      opacity: 0.35;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 36px;
+      background: var(--brown);
+      transform-origin: top;
+      animation: drip 1.8s ease-in-out infinite;
+    }
+    @keyframes drip {
+      0%   { transform: scaleY(0); opacity: 0; transform-origin: top; }
+      50%  { transform: scaleY(1); opacity: 1; transform-origin: top; }
+      100% { transform: scaleY(1); opacity: 0; transform-origin: bottom; }
+    }
+    .hero-mountain {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      pointer-events: none;
+    }
+
+    /* ─── SHARED ────────────────────────────────────────────────── */
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      opacity: 0.75;
+      margin-bottom: 18px;
+    }
+    .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      color: var(--brown);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .section-rule {
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--brown);
+      opacity: 0.25;
+      margin: 0 0 28px;
+    }
+    .section-rule.center { margin: 0 auto 28px; }
+
+    /* ─── BRANDS ────────────────────────────────────────────────── */
+    .brands-section { background: var(--off-white); }
+    .brands-header {
+      padding: 88px 48px 52px;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .brands-count-badge {
+      display: inline-block;
+      background: var(--brown);
+      color: var(--cream);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .brands-desc {
+      font-size: 1rem;
+      color: var(--brown-soft);
+      line-height: 1.95;
+      max-width: 420px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+    .brands-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      background: var(--off-white);
+    }
+    .brand-cell {
+      background: var(--off-white);
+      padding: 8px 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 110px;
+      flex: 0 0 20%;
+      transition: background 0.2s;
+    }
+    .brand-cell:hover { background: #fff; }
+    .brand-logo {
+      height: 53px;
+      width: auto;
+      max-width: 80%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      opacity: 1;
+      filter: none;
+      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), filter 0.25s ease;
+    }
+    .brand-cell:hover .brand-logo {
+      opacity: 0.55;
+      transform: scale(1.06);
+      filter: grayscale(70%) brightness(1.05);
+    }
+    /* ─── Individual logo size overrides ───────────────────────── */
+    img[alt="Aigle"]      { height: 126px; }
+    img[alt="Nalgene"]    { height: 176px; }
+    img[alt="Buff"]       { height: 58px;  }
+    img[alt="Chaco"]      { height: 112px; }
+    img[alt="Smartwool"]  { height: 100px; }
+    img[alt="Ecco"]       { height: 44px;  }
+    img[alt="Stanley"]    { height: 44px;  }
+    img[alt="CamelBak"]   { height: 36px;  }
+    img[alt="Wigwam"]     { height: 30px;  }
+    img[alt="Coleman"]    { height: 88px;  }
+    img[alt="Montbell"]   { height: 46px;  }
+
+    /* ─── STORY ─────────────────────────────────────────────────── */
+    .story-wrap { background: var(--cream); }
+    .story-section {
+      padding: 104px 48px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .story-section .section-rule { margin: 0 auto 28px; }
+    .story-title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 700;
+      font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+      color: var(--brown);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .story-body {
+      font-size: 1.02rem;
+      color: var(--brown-soft);
+      line-height: 2.05;
+      margin-bottom: 14px;
+      font-weight: 400;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 44px;
+    }
+    .stat {
+      background: var(--tan);
+      border-radius: 2px;
+      padding: 22px 20px 20px;
+      cursor: default;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .stat:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(30, 14, 8, 0.12);
+    }
+    .stat-number {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--brown);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--brown-mid);
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    /* ─── GUIDANCE ──────────────────────────────────────────────── */
+    .guidance-section { background: var(--green); overflow: hidden; }
+    .guidance-top {
+      padding: 104px 48px 72px;
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .guidance-section .section-label { color: rgba(237,227,212,0.6); opacity: 1; }
+    .guidance-questions { margin: 0 auto 36px; }
+    .guidance-q {
+      font-family: 'Noto Serif TC', serif;
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      color: #F5EFE6;
+      line-height: 2.2;
+    }
+    .guidance-divider {
+      width: 32px; height: 1px;
+      background: rgba(237,227,212,0.3);
+      margin: 36px auto;
+    }
+    .guidance-desc {
+      font-size: 1rem;
+      color: rgba(237,227,212,0.82);
+      line-height: 2.05;
+      max-width: 520px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+    .guidance-blocks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap);
+      background: rgba(0,0,0,0.15);
+    }
+    .guidance-block {
+      background: rgba(255,255,255,0.04);
+      padding: 44px 36px;
+      border-top: 1px solid rgba(237,227,212,0.08);
+      cursor: default;
+      transition: background 0.22s;
+    }
+    .guidance-block:hover { background: rgba(255,255,255,0.08); }
+    .guidance-block-icon { margin-bottom: 22px; opacity: 0.55; }
+    .guidance-block-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem;
+      color: #F5EFE6;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .guidance-block-body {
+      font-size: 0.95rem;
+      color: rgba(237,227,212,0.72);
+      line-height: 1.95;
+      font-weight: 400;
+    }
+    .wave-divider {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────── */
+    .faq-section {
+      background: var(--cream);
+      padding: 104px 48px;
+    }
+    .faq-inner { max-width: 720px; margin: 0 auto; }
+    .faq-header { margin-bottom: 56px; }
+    .faq-item { border-bottom: 1px solid rgba(30,14,8,0.12); }
+    .faq-item:first-of-type { border-top: 1px solid rgba(30,14,8,0.12); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 26px 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: var(--brown);
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      font-weight: 600;
+      line-height: 1.65;
+      transition: opacity 0.2s;
+    }
+    .faq-question:hover { opacity: 0.65; }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      position: relative;
+      opacity: 0.4;
+    }
+    .faq-icon::before, .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--brown);
+      border-radius: 1px;
+    }
+    .faq-icon::before {
+      width: 1px; height: 12px;
+      top: 3px; left: 8.5px;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+    .faq-icon::after {
+      width: 12px; height: 1px;
+      top: 8.5px; left: 3px;
+    }
+    .faq-item.open .faq-icon::before {
+      transform: rotate(90deg);
+      opacity: 0;
+    }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.36s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 0 28px;
+      font-size: 0.98rem;
+      color: var(--brown-soft);
+      line-height: 2;
+      font-weight: 400;
+      max-width: 580px;
+    }
+
+    /* ─── CONTACT ───────────────────────────────────────────────── */
+    .contact-section { background: var(--brown-mid); }
+    .contact-inner {
+      padding: 104px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: start;
+    }
+    .contact-section .section-label { color: rgba(237,227,212,0.65); opacity: 1; }
+    .contact-section .section-title { color: #F5EFE6; }
+    .contact-section .section-rule { background: rgba(237,227,212,0.3); opacity: 1; }
+    .contact-item { margin-bottom: 32px; }
+    .contact-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: rgba(237,227,212,0.55);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .contact-value {
+      color: rgba(237,227,212,0.9);
+      font-size: 1rem;
+      line-height: 1.85;
+      font-weight: 400;
+    }
+    .contact-value a { color: #F5EFE6; text-decoration: none; }
+    .contact-value a:hover { text-decoration: underline; }
+    .contact-final {
+      margin-top: 52px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(237,227,212,0.15);
+    }
+    .contact-final-text {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      color: rgba(237,227,212,0.82);
+      line-height: 1.9;
+    }
+    .map-wrap {
+      aspect-ratio: 1;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      background: #180D07;
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: rgba(237,227,212,0.45);
+      letter-spacing: 0.08em;
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(237,227,212,0.22);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── SCROLL REVEAL ─────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      nav { padding: 0 24px; }
+      .hero { padding: 90px 24px 200px; }
+      .hero-logo-wrap img { width: 88vw; }
+      .brands-header { padding: 64px 24px 40px; }
+      .brand-cell { flex: 0 0 33.333%; }
+      .story-section { padding: 72px 24px; }
+      .guidance-top { padding: 72px 24px 56px; }
+      .guidance-blocks { grid-template-columns: 1fr; }
+      .faq-section { padding: 80px 24px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
+      .map-wrap { display: none; }
+      footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+    }
+    @media (max-width: 540px) {
+      .brand-cell { flex: 0 0 50%; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-line { animation: none; opacity: 0.3; }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ════════════════════════════════════════════════════ -->
+  <nav>
+    <a href="#hero" class="nav-logo" aria-label="楞先生首頁">
+      <img src="assets/cornerlogo.png" alt="楞先生">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#brands">品牌夥伴</a></li>
+      <li><a href="#story">品牌故事</a></li>
+      <li><a href="#guidance">選品建議</a></li>
+      <li><a href="#faq">常見問題</a></li>
+      <li><a href="#contact">聯絡我們</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="開啟選單" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+
+  <!-- ═══ HERO ════════════════════════════════════════════════════ -->
+  <section id="hero" class="hero">
+
+    <div class="hero-logo-wrap">
+      <img src="assets/logo.png" alt="楞先生">
+    </div>
+
+    <p class="hero-sub">戶外・旅行・機能生活選品</p>
+
+    <p class="hero-tagline">
+      告訴我們你要去哪裡，<br>我們幫你準備好。
+    </p>
+
+    <p class="hero-desc">
+      無論是富士山健行、冬季旅行、日常通勤，還是第一次接觸戶外活動，我們會根據你的目的地、季節與需求，幫你找到真正適合的裝備。
+    </p>
+
+    <div class="hero-tags" aria-label="適合的活動類型">
+      <span class="hero-tag">富士山健行</span>
+      <span class="hero-tag">冬季旅行</span>
+      <span class="hero-tag">日常通勤</span>
+      <span class="hero-tag">親子露營</span>
+      <span class="hero-tag">長途步行</span>
+      <span class="hero-tag">雨季穿搭</span>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span>往下瀏覽</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <svg class="hero-mountain" viewBox="0 0 1440 220" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0,220 L0,160 L80,130 L160,155 L260,90 L360,125 L460,65 L540,105
+               L660,35 L760,85 L840,55 L960,120 L1060,75 L1160,115 L1280,80
+               L1380,105 L1440,90 L1440,220 Z"
+            fill="#8B7D6B" opacity="0.26"/>
+      <path d="M0,220 L0,185 L100,165 L200,180 L320,145 L440,170 L560,140
+               L680,168 L800,135 L920,165 L1040,148 L1160,175 L1300,155
+               L1440,165 L1440,220 Z"
+            fill="#8B7D6B" opacity="0.14"/>
+      <path d="M0,220 L1440,220 L1440,215 Q720,204 0,215 Z"
+            fill="#F5F0E8"/>
+    </svg>
+  </section>
+
+
+  <!-- ═══ BRANDS ══════════════════════════════════════════════════ -->
+  <section id="brands" class="brands-section">
+    <div class="brands-header reveal">
+      <span class="section-label">品牌夥伴</span>
+      <br>
+      <span class="brands-count-badge">17 個精選國際品牌</span>
+      <h2 class="section-title">找到你需要的每一件裝備</h2>
+      <span class="section-rule center"></span>
+      <p class="brands-desc">
+        從戶外健行、旅行機能到日常舒適，我們選擇的每個品牌，都有自己擅長的領域與存在的理由。
+      </p>
+    </div>
+
+    <div class="brands-grid" role="list" aria-label="品牌列表">
+      <div class="brand-cell" role="listitem"><img src="assets/logos/ecco.png"         alt="Ecco"          class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/aigle.png"        alt="Aigle"         class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/smartwool.png"    alt="Smartwool"     class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/montbell.png"     alt="Montbell"      class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/marmot.png"       alt="Marmot"        class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/icebreaker.png"   alt="Icebreaker"    class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/prana.png"        alt="Prana"         class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/golite.png"       alt="GoLite"        class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/gregory.png"      alt="Gregory"       class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/coleman.png"      alt="Coleman"       class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/wigwam.png"       alt="Wigwam"        class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/stanley.webp"     alt="Stanley"       class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/nalgene.png"      alt="Nalgene"       class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/buff.png"         alt="Buff"          class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/blackdiamond.png" alt="Black Diamond" class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/camelbak.png"     alt="CamelBak"      class="brand-logo" loading="lazy"></div>
+      <div class="brand-cell" role="listitem"><img src="assets/logos/chaco.png"        alt="Chaco"         class="brand-logo" loading="lazy"></div>
+    </div>
+  </section>
+
+
+  <!-- ═══ STORY ═══════════════════════════════════════════════════ -->
+  <div id="story" class="story-wrap">
+    <div class="story-section">
+      <div class="story-text reveal">
+        <span class="section-label">品牌故事</span>
+        <h2 class="story-title">
+          二十五年的戶外經驗，<br>來自長時間的使用、<br>理解與累積。
+        </h2>
+        <span class="section-rule"></span>
+        <p class="story-body">
+          楞先生是一家由家族經營的戶外服飾與裝備店。二十五年來，我們陪伴不同年齡與需求的客人，從第一次旅行，到長年習慣的戶外生活。
+        </p>
+        <p class="story-body">
+          我們相信，好的裝備不是最貴或最熱門，而是真正適合你的使用情境。
+        </p>
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">年戶外與旅行<br>選品經驗</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">17</div>
+            <div class="stat-label">個精選<br>國際品牌</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">全身</div>
+            <div class="stat-label">從頭到腳<br>完整機能裝備</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">長年</div>
+            <div class="stat-label">許多熟客<br>一路同行至今</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══ GUIDANCE ════════════════════════════════════════════════ -->
+  <div id="guidance" class="guidance-section">
+    <div class="guidance-top reveal">
+      <span class="section-label">我們的建議方式</span>
+      <div class="guidance-questions">
+        <p class="guidance-q">第一次去雪地旅行，需要準備什麼？</p>
+        <p class="guidance-q">去日本冬天旅行，該怎麼穿才夠保暖？</p>
+        <p class="guidance-q">健行鞋、登山鞋與越野鞋有什麼差別？</p>
+      </div>
+      <div class="guidance-divider" aria-hidden="true"></div>
+      <p class="guidance-desc">
+        我們會根據你的目的地、季節、使用需求與舒適度，協助你找到真正適合的裝備，而不是單純推薦最貴的產品。
+      </p>
+    </div>
+
+    <div class="guidance-blocks">
+      <div class="guidance-block reveal reveal-delay-1">
+        <svg class="guidance-block-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M15 3 L15 27 M5 11 L15 3 L25 11" stroke="#C9B69B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="guidance-block-title">機能與分層建議</div>
+        <div class="guidance-block-body">
+          從排汗層、保暖層到防風防水外層，根據不同氣候與活動提供搭配建議。
+        </div>
+      </div>
+
+      <div class="guidance-block reveal reveal-delay-2">
+        <svg class="guidance-block-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="15" cy="21" rx="9" ry="4" stroke="#C9B69B" stroke-width="1.4"/>
+          <path d="M6 21 L6 17 Q15 7 24 17 L24 21" stroke="#C9B69B" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <div class="guidance-block-title">鞋款與舒適度</div>
+        <div class="guidance-block-body">
+          依照步行距離、地形與穿著習慣，協助挑選適合的鞋款與尺寸。
+        </div>
+      </div>
+
+      <div class="guidance-block reveal reveal-delay-3">
+        <svg class="guidance-block-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 25 Q15 5 26 25" stroke="#C9B69B" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M9 25 Q15 13 21 25" stroke="#C9B69B" stroke-width="1.4" stroke-linecap="round" opacity="0.45"/>
+        </svg>
+        <div class="guidance-block-title">旅行與戶外準備</div>
+        <div class="guidance-block-body">
+          從日常通勤到長途旅行與戶外活動，協助你更安心地出發。
+        </div>
+      </div>
+    </div>
+
+    <svg class="wave-divider" viewBox="0 0 1440 80" preserveAspectRatio="none"
+         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0,80 L0,48 L160,22 L320,50 L480,18 L640,44 L800,16 L960,46
+               L1120,20 L1280,48 L1440,26 L1440,80 Z"
+            fill="#EDE3D4"/>
+    </svg>
+  </div>
+
+
+  <!-- ═══ FAQ ══════════════════════════════════════════════════════ -->
+  <section id="faq" class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-header reveal">
+        <span class="section-label">常見問題</span>
+        <h2 class="section-title">你可能想先問的事</h2>
+        <span class="section-rule"></span>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          你們會幫初學者挑選裝備嗎？
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            有的。我們會根據你的活動、地點與預算，協助你從適合的裝備開始，不需要提前做功課。
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question" aria-expanded="false">
+          不確定需要什麼裝備，也可以來店嗎？
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            當然可以。很多客人都是帶著行程與需求來找我們，我們會一起討論適合的選擇。
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question" aria-expanded="false">
+          你們只有登山用品嗎？
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            除了戶外活動，我們也提供適合旅行、通勤與日常穿著的機能服飾與鞋款。
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question" aria-expanded="false">
+          你們有販售兒童尺寸嗎？
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            部分品牌與商品有提供兒童尺寸，歡迎來店詢問。
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-4">
+        <button class="faq-question" aria-expanded="false">
+          可以協助挑選鞋子尺寸嗎？
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            可以。我們會依照使用需求、步行距離與舒適度協助挑選，並在現場試穿確認。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══ CONTACT ══════════════════════════════════════════════════ -->
+  <div id="contact" class="contact-section">
+    <div class="contact-inner">
+      <div class="reveal">
+        <span class="section-label">聯絡我們</span>
+        <h2 class="section-title">來店聊聊你的<br>下一段旅程</h2>
+        <span class="section-rule"></span>
+
+        <div class="contact-item">
+          <div class="contact-label">地址</div>
+          <div class="contact-value">234 新北市永和區安樂路 146 號</div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-label">電話</div>
+          <div class="contact-value">
+            <a href="tel:+886229482900">(02) 2948-2900</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-label">營業時間</div>
+          <div class="contact-value">
+            週一至週六　14:00 – 20:00
+          </div>
+        </div>
+
+        <div class="contact-final">
+          <p class="contact-final-text">
+            告訴我們你要去哪裡，<br>我們幫你準備好。
+          </p>
+        </div>
+      </div>
+
+      <div class="map-wrap">
+        <iframe
+          src="https://maps.google.com/maps?q=25.0003862,121.5142972&z=17&output=embed"
+          width="100%"
+          height="100%"
+          style="border:0; filter:sepia(35%) contrast(0.88) brightness(0.95);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="楞先生 地圖">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-brand">楞先生 戶外旅遊休閒用品店</div>
+    <div class="footer-copy">© 2025 楞先生. All rights reserved.</div>
+  </footer>
+
+
+  <!-- ═══ JS ═══════════════════════════════════════════════════════ -->
+  <script>
+    /* ── Mobile nav ── */
+    const btn   = document.getElementById('hamburger');
+    const links = document.getElementById('navLinks');
+    const nav   = document.querySelector('nav');
+
+    function closeMenu() {
+      links.removeAttribute('style');
+      links.dataset.open = '';
+      btn.setAttribute('aria-expanded', 'false');
+    }
+
+    btn.addEventListener('click', () => {
+      const isOpen = links.dataset.open === 'true';
+      if (isOpen) {
+        closeMenu();
+      } else {
+        links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:rgba(196,176,148,0.99);padding:20px 24px 28px;gap:22px;box-shadow:0 8px 24px rgba(30,14,8,0.1);';
+        links.dataset.open = 'true';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    /* ── Nav scrolled + active ── */
+    const sections   = ['hero','brands','story','guidance','faq','contact'];
+    const navAnchors = {};
+    links.querySelectorAll('a[href^="#"]').forEach(a => {
+      navAnchors[a.getAttribute('href').slice(1)] = a;
+    });
+
+    function updateNav() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+      const scrollMid = window.scrollY + window.innerHeight * 0.4;
+      let current = 'hero';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollMid) current = id;
+      });
+      Object.values(navAnchors).forEach(a => a.classList.remove('active'));
+      if (navAnchors[current]) navAnchors[current].classList.add('active');
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+
+    /* ── Scroll reveal ── */
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+
+    /* ── Brand grid stagger ── */
+    const brandCells = document.querySelectorAll('.brand-cell');
+    const gridObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          brandCells.forEach((cell, i) => {
+            setTimeout(() => {
+              cell.style.opacity = '1';
+              cell.style.transform = 'translateY(0)';
+            }, i * 28);
+          });
+          gridObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.05 });
+
+    brandCells.forEach(cell => {
+      cell.style.opacity = '0';
+      cell.style.transform = 'translateY(10px)';
+      cell.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+    });
+    const grid = document.querySelector('.brands-grid');
+    if (grid) gridObserver.observe(grid);
+
+    /* ── FAQ accordion ── */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.faq-item.open').forEach(openItem => {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-answer').style.maxHeight = '0';
+          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
