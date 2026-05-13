@@ -24,12 +24,12 @@
 
     /* ─── RESET ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 150%; }
+    html { scroll-behavior: smooth; font-size: 127.5%; }
     body {
       font-family: 'Noto Sans TC', sans-serif;
       background: var(--cream);
       color: var(--brown);
-      font-size: 26px;
+      font-size: 22px;
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -340,15 +340,11 @@
       margin-top: 44px;
     }
     .stat {
-      background: var(--tan);
-      border-radius: 2px;
-      padding: 22px 20px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
       cursor: default;
-      transition: transform 0.22s, box-shadow 0.22s;
-    }
-    .stat:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 18px rgba(30, 14, 8, 0.12);
     }
     .stat-number {
       font-family: 'Noto Serif TC', serif;
@@ -356,12 +352,12 @@
       font-weight: 900;
       color: var(--brown);
       line-height: 1;
-      margin-bottom: 8px;
+      flex-shrink: 0;
     }
     .stat-label {
       font-size: 0.88rem;
       color: var(--brown-mid);
-      line-height: 1.65;
+      line-height: 1.5;
       font-weight: 400;
     }
 
@@ -726,19 +722,19 @@
         <div class="stats-row">
           <div class="stat">
             <div class="stat-number">25+</div>
-            <div class="stat-label">年戶外與旅行<br>選品經驗</div>
+            <div class="stat-label">年戶外與旅行選品經驗</div>
           </div>
           <div class="stat">
             <div class="stat-number">17</div>
-            <div class="stat-label">個精選<br>國際品牌</div>
+            <div class="stat-label">個精選國際品牌</div>
           </div>
           <div class="stat">
             <div class="stat-number">全身</div>
-            <div class="stat-label">從頭到腳<br>完整機能裝備</div>
+            <div class="stat-label">從頭到腳完整機能裝備</div>
           </div>
           <div class="stat">
             <div class="stat-number">長年</div>
-            <div class="stat-label">許多熟客<br>一路同行至今</div>
+            <div class="stat-label">許多熟客一路同行至今</div>
           </div>
         </div>
       </div>
